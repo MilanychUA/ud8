@@ -29,7 +29,7 @@ const AllItems = () => {
                 <TableCell align="right">Brand</TableCell>
                 <TableCell align="right">Amount in base</TableCell>
                 <TableCell align="right">Price</TableCell>
-                <TableCell align="right">On stock</TableCell>
+                <TableCell align="right">Sale</TableCell>
                 <TableCell align="right">Button</TableCell>
               </TableRow>
             </TableHead>
@@ -41,7 +41,7 @@ const AllItems = () => {
                   title={it.title}
                   brand={it.brand}
                   amount={it.amount}
-                  onStock={it.onStock}
+                  isSale={it.isSale}
                   price={it.price}
                   onAdd={onAdd}
                 />

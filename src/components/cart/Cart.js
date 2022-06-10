@@ -29,7 +29,7 @@ const Cart = () => {
                 <TableCell align="right">
                   <b>Discount</b>
                 </TableCell>
-                <TableCell align="right">Button</TableCell>
+                <TableCell align="center">Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -41,6 +41,9 @@ const Cart = () => {
                   brand={ct.brand}
                   amount={ct.amount}
                   price={ct.price}
+                  removeItemFromCart={cartCtx.removeItemFromCart}
+                  addItemFromCart={cartCtx.addItemFromCart}
+                  isBtValid={cartCtx.isBtValid}
                 />
               ))}
             </TableBody>
