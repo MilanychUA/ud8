@@ -63,7 +63,7 @@ const INITIAL_DISCOUNTS = [
     id: 1,
     idItem: "Nike",
     discount: 10,
-    expdate: "2022-10-04",
+    expdate: "2021 June 04",
   },
   {
     id: 2,

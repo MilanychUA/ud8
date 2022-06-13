@@ -4,7 +4,6 @@ import AddCircleOutlineRoundedIcon from "@mui/icons-material/AddCircleOutlineRou
 import { useContext } from "react";
 import ItemsData from "../../store/items-context";
 
-
 const CartRow = ({
   title,
   timeOfAdd,
@@ -15,23 +14,33 @@ const CartRow = ({
   removeItemFromCart,
   addItemFromCart,
   isBtValid,
-
 }) => {
-  const discountCtx = useContext(ItemsData)
-  
-  let dis='-';
-  const res = discountCtx.discounts.findIndex(d => d.idItem === brand)
-  if (res !== -1) {dis=discountCtx.discounts[res].discount}
+  const discountCtx = useContext(ItemsData);
 
-const costs = price - price*dis/100
+  let dis = "-";
+  let disDate;
+  const res = discountCtx.discounts.findIndex((d) => d.idItem === brand);
+  if (res !== -1) {
+    dis = discountCtx.discounts[res].discount;
+    disDate = discountCtx.discounts[res].expdate;
+    disDate = new Date(disDate)
+    disDate = disDate.toLocaleString("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+    });
+    console.log(disDate);
+  }
+
+  const costs = price - (price * dis) / 100;
 
   const onRemoveHandler = () => {
     const itemId = id;
-    removeItemFromCart(itemId, brand,price);
+    removeItemFromCart(itemId, brand, price);
   };
   const onAddHandler = () => {
     const itemId = id;
-    addItemFromCart(itemId, brand,price);
+    addItemFromCart(itemId, brand, price);
   };
 
   const imeOfAdd = timeOfAdd.toLocaleString("en-GB", {
@@ -40,6 +49,7 @@ const costs = price - price*dis/100
     day: "2-digit",
   });
 
+  console.log(imeOfAdd-disDate)
 
   return (
     <TableRow>

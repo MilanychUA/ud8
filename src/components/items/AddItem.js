@@ -25,31 +25,65 @@ const AddItem = () => {
   const [erBrand, setErBrand] = useState(false);
   const [isSale, setIsSale] = useState(true);
 
-
   const [brand, setBrand] = useState("");
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [price, setPrice] = useState("");
 
   const handleChangeTitle = (event) => {
-    if (event.target.value.length === 0) {setErTitle(true);setTitle(event.target.value)} else {setTitle(event.target.value);setErTitle(false)}
+    if (event.target.value.length === 0) {
+      setErTitle(true);
+      setTitle(event.target.value);
+    } else {
+      setTitle(event.target.value);
+      setErTitle(false);
+    }
   };
-  const handleChangeSale = (event) => {setIsSale(event.target.value);};
-  const handleChangeBrand = (event) => {setBrand(event.target.value);};
-  const handleChangeAmount = (event) => { if (event.target.value < 0) {setErAmount(true)} else {setAmount(event.target.value);setErAmount(false)}
+  const handleChangeSale = (event) => {
+    setIsSale(event.target.value);
+  };
+  const handleChangeBrand = (event) => {
+    if (event.target.value === "") {setErBrand(true)} else {  setErBrand(false); setBrand(event.target.value);}
+
+  };
+  const handleChangeAmount = (event) => {
+    if (event.target.value < 0) {
+      setErAmount(true);
+    } else {
+      setAmount(event.target.value);
+      setErAmount(false);
+    }
   };
   const handleChangePrice = (event) => {
-    if (event.target.value < 0) {setErPrice(true)} else {setPrice(event.target.value);setErPrice(false)}  };
+    if (event.target.value < 0) {
+      setErPrice(true);
+    } else {
+      setPrice(event.target.value);
+      setErPrice(false);
+    }
+  };
 
   const addToBase = () => {
-    if (!erTitle && !erAmount && !erPrice && !erBrand ) {
+    if (title.trim().length === 0) {setErTitle(true)} else {setErTitle(false)}
+    if (amount === "" || amount === 0) {setErAmount(true)} else {setErAmount(false)}
+    if (price === "" || price === 0) {setErPrice(true)} else {setErPrice(false)}
+    if (brand === "") {setErBrand(true)} else {setErBrand(false)}
+    if (!erTitle && !erAmount && !erPrice && !erBrand && title.trim().length !==0 ) {
       const item = {
         brand: brand,
         isSale: isSale,
+        title: title,
+        amount: amount,
+        price: price,
         id: Math.random(),
       };
       addCtx.addItemToBase(item);
     }
+    console.log(title.trim().length)
+    console.log(erTitle)
+    console.log(erBrand)
+    console.log(erAmount)
+    console.log(erPrice)
   };
 
   return (
